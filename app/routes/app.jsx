@@ -1,7 +1,6 @@
 import { Link, Outlet, useLoaderData, useRouteError } from "@remix-run/react";
+import { AppProvider } from "@shopify/shopify-app-remix/react";
 import { boundary } from "@shopify/shopify-app-remix/server";
-import { AppProvider } from "@shopify/shopify-app-remix/react/cjs";
-import { boundary } from "@shopify/shopify-app-remix/server/cjs";
 import { NavMenu } from "@shopify/app-bridge-react";
 import polarisStyles from "@shopify/polaris/build/esm/styles.css?url";
 import { authenticate } from "../shopify.server";
@@ -32,9 +31,9 @@ export default function App() {
 
 // Shopify needs Remix to catch some thrown responses, so that their headers are included in the response.
 export function ErrorBoundary() {
-  return boundary.error(useRouteError());
+  return shopifyBoundary.error(useRouteError());
 }
 
 export const headers = (headersArgs) => {
-  return boundary.headers(headersArgs);
+  return shopifyBoundary.headers(headersArgs);
 };
