@@ -1,6 +1,6 @@
 // patch-shopify-remix.js
 
-import fs from "fs";
+const fs = require("fs");
 import path from "path";
 
 const remixPkgPath = "./node_modules/@shopify/shopify-app-remix/package.json";
