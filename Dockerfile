@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:20-alpine
 RUN apk add --no-cache openssl
 
 EXPOSE 3000
@@ -9,13 +9,15 @@ ENV NODE_ENV=production
 
 COPY package.json package-lock.json* ./
 
-RUN npm ci && npm cache clean --force
-# Remove CLI packages since we don't need them in production by default.
-# Remove this line if you want to run CLI commands in your container.
+# ✅ FIX: install all deps, including remix
+RUN npm install && npm cache clean --force
+
+# Optional: remove CLI if not needed at runtime
 RUN npm remove @shopify/cli
 
 COPY . .
 
+# ✅ remix will now be available here
 RUN npm run build
 
 CMD ["npm", "run", "docker-start"]
