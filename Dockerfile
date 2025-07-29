@@ -9,15 +9,14 @@ ENV NODE_ENV=production
 
 COPY package.json package-lock.json* ./
 
-# ✅ FIX: install all deps, including remix
-RUN npm install && npm cache clean --force
+# ✅ Install all deps including devDeps like remix
+RUN npm install --include=dev && npm cache clean --force
 
-# Optional: remove CLI if not needed at runtime
+# Optional: remove Shopify CLI in prod
 RUN npm remove @shopify/cli
 
 COPY . .
 
-# ✅ remix will now be available here
 RUN npm run build
 
 CMD ["npm", "run", "docker-start"]
