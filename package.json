@@ -20,9 +20,10 @@
   },
   "dependencies": {
     "@shopify/app-bridge-react": "^4.2.0",
-    "@shopify/polaris": "^12.27.0",
+    "@shopify/polaris": "^13.9.5",
     "@shopify/polaris-tokens": "^8.10.0",
-    "@shopify/shopify-app-remix": "^3.6.0"
+    "@shopify/shopify-app-remix": "^3.8.5",
+    "esbuild": "^0.25.8"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.17.0",
